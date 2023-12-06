@@ -1,0 +1,55 @@
+alg: BehaviorCloning
+alg_kwargs:
+  offline_steps: -1
+  random_steps: 0
+checkpoint: null
+dataset: D4RLDataset
+dataset_kwargs:
+  action_eps: 1.0e-05
+  d4rl_path: ../datasets/d4rl/
+  distributed: false
+  name: hopper-medium-expert-v2
+  normalize_reward: true
+  reward_scale: 1000.0
+  sample_fn: sample_sequence
+  sample_kwargs:
+    batch_size: 256
+    seq_keys: Tuple = ()
+  use_rtg: true
+  use_timesteps: true
+env: null
+env_kwargs: {}
+eval_env: hopper-medium-expert-v2
+eval_env_kwargs: {}
+network: ActorPolicy
+network_kwargs:
+  actor_class: ContinuousMLPActor
+  hidden_layers:
+  - 256
+  - 256
+  ortho_init: true
+optim: Adam
+optim_kwargs:
+  lr: 0.0003
+processor: null
+processor_kwargs: {}
+schedule: null
+schedule_kwargs: {}
+seed: null
+trainer_kwargs:
+  eval_fn: eval_policy
+  eval_freq: 10000
+  eval_kwargs:
+    num_ep: 10
+  log_freq: 250
+  loss_metric: reward
+  max_validation_steps: 25
+  profile_freq: 100
+  total_steps: 1000000
+  train_dataloader_kwargs:
+    batch_size: null
+    num_workers: 0
+validation_dataset: null
+validation_dataset_kwargs: null
+wrapper: null
+wrapper_kwargs: {}
